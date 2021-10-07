@@ -13,7 +13,13 @@ class ProductCard extends Component {
               <h3>Price: ${this.props.product.price}</h3>
             </Card.Text>
 
-            <Button variant='primary'>Add to cart</Button>
+            <Button
+              variant='info'
+              className='text-white'
+              onClick={() => this.props.addToCart(this.props.product)}
+            >
+              Add to cart
+            </Button>
           </Card.Body>
         </Card>
       </Col>

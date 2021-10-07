@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { productList } from '../data.js'
+import Cart from './Cart'
 import Filter from './Filter'
-import ProductCard from './ProductCard'
+import Products from './Products'
 class Home extends Component {
   constructor () {
     super()
     this.state = {
       products: productList,
       size: '',
-      sort: ''
+      sort: '',
+      cartItems: []
     }
   }
 
@@ -52,27 +54,50 @@ class Home extends Component {
     }
   }
 
+  addToCart = product => {
+    const cartItems = this.state.cartItems.slice()
+    let alreadyInCart = false
+    cartItems.forEach(item => {
+      if (item._id === product._id) {
+        item.count++
+        alreadyInCart = true
+      }
+    })
+    if (!alreadyInCart) {
+      cartItems.push({ ...product, count: 1 })
+    }
+    this.setState({ cartItems })
+  }
+  removeFromCart = product => {
+    const cartItems = this.state.cartItems.slice()
+    this.setState({ cartItems: cartItems.filter(x => x._id !== product._id) })
+  }
   render () {
     return (
       <>
         <Container>
-          <Filter
-            count={this.state.products.length}
-            size={this.state.size}
-            sort={this.state.sort}
-            sortProducts={this.sortProducts}
-            filterProducts={this.filterProducts}
-          />
           <Row>
             <Col md={8}>
-              <Row className='flex'>
-                {this.state.products.map(product => (
-                  <ProductCard product={product} key={product._id} />
-                ))}
-              </Row>
+              <Filter
+                count={this.state.products.length}
+                size={this.state.size}
+                sort={this.state.sort}
+                sortProducts={this.sortProducts}
+                filterProducts={this.filterProducts}
+              />
+
+              <Products
+                products={this.state.products}
+                addToCart={this.addToCart}
+              />
             </Col>
             <Col md={4}>
-              <h5>Card</h5>
+              <h5>
+                <Cart
+                  cartItems={this.state.cartItems}
+                  removeFromCart={this.removeFromCart}
+                />
+              </h5>
             </Col>
           </Row>
         </Container>
