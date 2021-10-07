@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# ECommerce Shopping Cart by React & Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table Of Content
 
-## Available Scripts
+1.  Introduction
 
-In the project directory, you can run:
+    1. Fully-Functional Shopping Cart
+    2. Instant Feedback
+    3. Animated and Intuitive Design
+    4. List Products
+    5. Sort Products By Price High or Low
+    6. Filter Products by Size
+    7. Open Modal By Click on Product
+    8. Add Product To Cart using Animation
+    9. Handle Multiple Click By Adding More Items
+    10. Remove Product
+    11. Show Checkout Form
+    12. Create Order with user friendly id
+    13. Admin Section to see list of products
+    14. Using postman to add or remove products and order
 
-### `yarn start`
+2.  Tools and Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    1. JavaScript (arrow functions, array functions, spread Operators, ...)
+    2. React (react-touter-dom, react-reveal, react-modal)
+    3. Redux (react-redux, redux-thunk)
+    4. Node (express, body-parser, Environment Variables, nodemon)
+    5. MongoDB ( mongoose, shortid)
+    6. VS Code (ES6 Snippets, ES7 React Extension, ESLint Extension,CSS Peek)
+    7. Chrome ( React Developer Tools, Redux Developer Tools)
+    8. Git (create repo, commit, remote, create and push branch)
+    9. Github (create repo, connect to local repo, pull request and merge)
+    10. Postman ( send get, post, put and delete requests to apis)
+    11. Deployment ( Heroku, MongoDB Atlas Cloud)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3.  Project Development Workflow
+    1. Create Google Spreadsheet
+    2. Add columns Feature, Description, State, and Duration
+    3. Enter Products Component, Show list of products, Open, 2
+    4. Add Time ? Hours, Rate 30 USD/Hours, Cost ? USD
+    5. Add All Features
+    6. Create Github account
+    7. Create new repository
+    8. Add it as remote repository in VS Code
+    9. Commit changes
+    10. Push changes on github
+    11. Start => create new feature Feature 1 in google spreadsheet
+    12. Create a new branch feature-1 for test the workflow
+    13. Add "// branch feature 1" in App.js Line 1
+    14. Commit with message "feature 1"
+    15. Click publish changes
+    16. Open repository page on github
+    17. Create pull request
+    18. Merge pull request
+    19. In VS Code switch to master and Sync changes
+    20. End => Loop from step 11 for next feature
