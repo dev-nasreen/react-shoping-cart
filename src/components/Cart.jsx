@@ -1,9 +1,33 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import { AiTwotoneDelete } from 'react-icons/ai'
+import Fade from 'react-reveal/Fade'
 import formatCurrency from '../util'
-
 export default class Cart extends Component {
+  constructor () {
+    super()
+    this.state = {
+      name: '',
+      email: '',
+      address: '',
+      showCheckout: false
+    }
+  }
+  handleInput = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  createOrder = e => {
+    e.preventDefault()
+    const order = {
+      name: this.state.name,
+      email: this.state.email,
+      address: this.state.address,
+      cartItems: this.props.cartItems
+    }
+
+    this.props.createOrder(order)
+  }
+  create
   render () {
     const { cartItems } = this.props
     return (
@@ -19,34 +43,43 @@ export default class Cart extends Component {
           )}
         </div>
         <div className='cart '>
-          <ul className='cart-items border-bottom'>
-            {cartItems.map(item => (
-              <li key={item._id} className='d-flex mb-2 '>
-                <div className='cart_img me-4'>
-                  <img src={item.image} alt={item.title} />
-                </div>
-                <div>
+          <Fade left cascade>
+            <ul className='cart-items border-bottom'>
+              {cartItems.map(item => (
+                <li key={item._id} className='d-flex mb-2 '>
+                  <div className='cart_img me-4'>
+                    <img src={item.image} alt={item.title} />
+                  </div>
                   <div>
-                    <span style={{ fontSize: '14px' }}>{item.title}</span>
+                    <div>
+                      <span style={{ fontSize: '14px' }}>{item.title}</span>
+                    </div>
+                    <div className='cart_right mt-2'>
+                      ${item.price} x {item.count}{' '}
+                      <span
+                        style={{ cursor: 'pointer' }}
+                        className='text-danger'
+                        onClick={() => this.props.removeFromCart(item)}
+                      >
+                        {' '}
+                        <AiTwotoneDelete />{' '}
+                      </span>
+                    </div>
                   </div>
-                  <div className='cart_right mt-2'>
-                    ${item.price} x {item.count}{' '}
-                    <span
-                      style={{ cursor: 'pointer' }}
-                      className='text-danger'
-                      onClick={() => this.props.removeFromCart(item)}
-                    >
-                      {' '}
-                      <AiTwotoneDelete />{' '}
-                    </span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </Fade>
         </div>
         <div className='cart_total d-flex justify-content-around align-items-center'>
-          <Button variant='info' size='lg' className='text-white px-5'>
+          <Button
+            variant='info'
+            size='lg'
+            className='text-white px-5'
+            onClick={() => {
+              this.setState({ showCheckout: true })
+            }}
+          >
             Proceed
           </Button>{' '}
           <h4>
@@ -56,6 +89,53 @@ export default class Cart extends Component {
             )}
           </h4>
         </div>
+        {this.state.showCheckout && (
+          <Fade right cascade>
+            <div className='mt-5'>
+              <Form onSubmit={this.createOrder}>
+                <Form.Group className='mb-3'>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type='email'
+                    name='email'
+                    placeholder='Enter email'
+                    onChange={this.handleInput}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group className='mb-3'>
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='name'
+                    placeholder='Your Name'
+                    onChange={this.handleInput}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className='mb-3'>
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='address'
+                    placeholder='Apartment, studio, or floor'
+                    onChange={this.handleInput}
+                    required
+                  />
+                </Form.Group>
+                <Button
+                  variant='info'
+                  type='submit'
+                  size='lg'
+                  className='text-white px-5'
+                >
+                  Submit
+                </Button>
+              </Form>
+            </div>
+          </Fade>
+        )}
       </>
     )
   }
