@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { Button, Card, Col, Row } from 'react-bootstrap'
 import Modal from 'react-modal'
+import { connect } from 'react-redux'
 import Fade from 'react-reveal/Fade'
 import Zoom from 'react-reveal/Zoom'
+import { fetchProducts } from '../redux/actions/productActions'
 
-export default class Products extends Component {
+class Products extends Component {
   constructor (props) {
     super(props)
     this.state = {
       product: null
     }
+  }
+  componentDidMount () {
+    this.props.fetchProducts()
   }
   openModal = product => {
     this.setState({ product })
@@ -22,42 +27,46 @@ export default class Products extends Component {
     return (
       <>
         <Fade bottom cascade>
-          <Row className='flex'>
-            {this.props.products.map(product => (
-              <Col md={4} key={product._id}>
-                <Card className='mb-3'>
-                  <a
-                    href={'#' + product._id}
-                    onClick={() => this.openModal(product)}
-                  >
-                    <Card.Img variant='top' src={product.image} />
-                  </a>
-                  <Card.Body>
-                    <Card.Title>
-                      <a
-                        onClick={() => this.openModal(product)}
-                        href={'#' + product._id}
-                      >
-                        {' '}
-                        {product.title}
-                      </a>
-                    </Card.Title>
-                    <Card.Text>
-                      <h3>Price: ${product.price}</h3>
-                    </Card.Text>
-
-                    <Button
-                      variant='info'
-                      className='text-white'
-                      onClick={() => this.props.addToCart(product)}
+          {!this.props.products ? (
+            <div>Loading...</div>
+          ) : (
+            <Row className='flex'>
+              {this.props.products.map(product => (
+                <Col md={4} key={product._id}>
+                  <Card className='mb-3'>
+                    <a
+                      href={'#' + product._id}
+                      onClick={() => this.openModal(product)}
                     >
-                      Add to cart
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
+                      <Card.Img variant='top' src={product.image} />
+                    </a>
+                    <Card.Body>
+                      <Card.Title>
+                        <a
+                          onClick={() => this.openModal(product)}
+                          href={'#' + product._id}
+                        >
+                          {' '}
+                          {product.title}
+                        </a>
+                      </Card.Title>
+                      <Card.Text>
+                        <h3>Price: ${product.price}</h3>
+                      </Card.Text>
+
+                      <Button
+                        variant='info'
+                        className='text-white'
+                        onClick={() => this.props.addToCart(product)}
+                      >
+                        Add to cart
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          )}
         </Fade>
         {product && (
           <Modal isOpen={true} openRequestClose={this.closeModal}>
@@ -118,3 +127,7 @@ export default class Products extends Component {
     )
   }
 }
+
+export default connect(state => ({ products: state.products.items }), {
+  fetchProducts
+})(Products)
