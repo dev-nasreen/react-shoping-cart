@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { productList } from '../data.js'
 import Cart from './Cart'
 import Filter from './Filter'
 import Products from './Products'
@@ -8,9 +7,6 @@ class Home extends Component {
   constructor () {
     super()
     this.state = {
-      products: productList,
-      size: '',
-      sort: '',
       cartItems: localStorage.getItem('cartItems')
         ? JSON.parse(localStorage.getItem('cartItems'))
         : []
@@ -18,44 +14,6 @@ class Home extends Component {
   }
   createOrder = e => {
     alert('New order is placed.')
-  }
-  sortProducts = event => {
-    // impl
-    const sort = event.target.value
-    console.log(event.target.value)
-    this.setState(state => ({
-      sort: sort,
-      products: this.state.products
-        .slice()
-        .sort((a, b) =>
-          sort === 'lowest'
-            ? a.price > b.price
-              ? 1
-              : -1
-            : sort === 'highest'
-            ? a.price < b.price
-              ? 1
-              : -1
-            : a._id < b._id
-            ? 1
-            : -1
-        )
-    }))
-  }
-  filterProducts = event => {
-    if (event.target.value === '') {
-      this.setState({
-        size: event.target.value,
-        products: productList
-      })
-    } else {
-      this.setState({
-        size: event.target.value,
-        products: productList.filter(
-          product => product.availableSizes.indexOf(event.target.value) >= 0
-        )
-      })
-    }
   }
 
   addToCart = product => {
@@ -86,19 +44,9 @@ class Home extends Component {
       <>
         <Container>
           <Row>
+            <Filter />
             <Col md={8}>
-              <Filter
-                count={this.state.products.length}
-                size={this.state.size}
-                sort={this.state.sort}
-                sortProducts={this.sortProducts}
-                filterProducts={this.filterProducts}
-              />
-
-              <Products
-                products={this.state.products}
-                addToCart={this.addToCart}
-              />
+              <Products addToCart={this.addToCart} />
             </Col>
             <Col md={4}>
               <h5>

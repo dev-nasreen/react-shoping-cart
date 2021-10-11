@@ -23,7 +23,7 @@ const Product = mongoose.model(
     description: String,
     image: String,
     price: Number,
-    availableSize: [String],
+    availableSizes: [String],
   })
 );
 
