@@ -4,6 +4,7 @@ import Modal from 'react-modal'
 import { connect } from 'react-redux'
 import Fade from 'react-reveal/Fade'
 import Zoom from 'react-reveal/Zoom'
+import { addToCart } from '../redux/actions/cartActions'
 import { fetchProducts } from '../redux/actions/productActions'
 
 class Products extends Component {
@@ -129,5 +130,6 @@ class Products extends Component {
 }
 
 export default connect(state => ({ products: state.products.filteredItems }), {
-  fetchProducts
+  fetchProducts,
+  addToCart
 })(Products)
