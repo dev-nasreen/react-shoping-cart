@@ -8,12 +8,6 @@ import { addToCart } from '../redux/actions/cartActions'
 import { fetchProducts } from '../redux/actions/productActions'
 
 class Products extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      product: null
-    }
-  }
   componentDidMount () {
     this.props.fetchProducts()
   }
