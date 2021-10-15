@@ -1,6 +1,6 @@
 {
   "name": "react-shooping-cart",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://shoping-cart-nasreen.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
