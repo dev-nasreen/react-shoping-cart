@@ -28,46 +28,43 @@ class Products extends Component {
     return (
       <>
         <Fade bottom cascade>
-          {!this.props.products ? (
-            <div>Loading...</div>
-          ) : (
-            <Row className='flex'>
-              {this.props.products.map(product => (
-                <Col md={4} key={product._id}>
-                  <Card className='mb-3'>
-                    <a
-                      href={'#' + product._id}
-                      onClick={() => this.openModal(product)}
-                    >
-                      <Card.Img variant='top' src={product.image} />
-                    </a>
-                    <Card.Body>
-                      <Card.Title>
-                        <a
-                          onClick={() => this.openModal(product)}
-                          href={'#' + product._id}
-                        >
-                          {' '}
-                          {product.title}
-                        </a>
-                      </Card.Title>
-                      <Card.Text>
-                        <h3>Price: ${product.price}</h3>
-                      </Card.Text>
-
-                      <Button
-                        variant='info'
-                        className='text-white'
-                        onClick={() => this.props.addToCart(product)}
+          <Row className='flex'>
+            {this.props.products.map(product => (
+              <Col md={4} key={product._id}>
+                <Card className='mb-3'>
+                  <a
+                    href={'#' + product._id}
+                    onClick={() => this.openModal(product)}
+                  >
+                    <Card.Img variant='top' src={product.image} />
+                  </a>
+                  <Card.Body>
+                    <Card.Title>
+                      <a
+                        onClick={() => this.openModal(product)}
+                        href={'#' + product._id}
                       >
-                        Add to cart
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          )}
+                        {' '}
+                        {product.title}
+                      </a>
+                    </Card.Title>
+                    <Card.Text>
+                      <h3>Price: ${product.price}</h3>
+                    </Card.Text>
+
+                    <Button
+                      variant='info'
+                      className='text-white'
+                      onClick={() => this.props.addToCart(product)}
+                    >
+                      Add to cart
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+          )
         </Fade>
         {product && (
           <Modal isOpen={true} openRequestClose={this.closeModal}>
