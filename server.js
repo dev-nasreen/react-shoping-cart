@@ -8,7 +8,9 @@ app.use(bodyParser.json());
 app.use("/", express.static(__dirname + "/build"));
 app.get("/", (req, res) => res.sendFile(__dirname + "/build/index.html"));
 
-const DB = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.3ro2s.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+const DB =
+  `mongodb+srv://reactCart:reactCart123@cluster0.3ro2s.mongodb.net/reactShoppingCart?retryWrites=true&w=majority` ||
+  "mongodb://localhost/react-shopping-cart-db";
 
 mongoose
   .connect(DB, {
